@@ -44,7 +44,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     }
 
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      console.log(node)
       if (
         node.frontmatter.path != null &&
         node.frontmatter.date != null &&
