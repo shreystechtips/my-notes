@@ -1,3 +1,3 @@
 [submodule "src/pages/classes/cs61a"]
 	path = src/pages/classes/cs61a
-	url = https://github.com/shreystechtips/cs61a
+	url = git@github.com:shreystechtips/cs61a
