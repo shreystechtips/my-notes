@@ -16,6 +16,8 @@ const useStyles = makeStyles(() => ({
   card: {
     maxWidth: 350,
     padding: 10,
+    borderRadius: 8,
+    backgroundColor: "#F3F3F7",
   },
   gridRoot: {
     justifyContent: "center",
@@ -29,7 +31,7 @@ export default function Index({ data }) {
   const { edges: posts } = data.allMarkdownRemark
   return (
     <Layout>
-      <div className="blog-posts" style={{ maxWidth: 1000, margin: "auto" }}>
+      <div className="blog-posts" style={{ margin: "auto" }}>
         {/* <Helmet title={}/> */}
         <SEO title="Home" />
         <div style={{ margin: 10 }}>
@@ -38,7 +40,6 @@ export default function Index({ data }) {
             direction="row"
             spacing={2}
             className={classes.gridRoot}
-            sm={12}
           >
             {posts
               .filter(
@@ -57,7 +58,7 @@ export default function Index({ data }) {
                     direction="column"
                   >
                     <Grid container>
-                      <Paper className={classes.card} elevation={2}>
+                      <Paper className={classes.card} elevation={1}>
                         <Grid item>
                           <Typography variant="h4">
                             <MaterialLink
