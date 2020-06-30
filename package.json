@@ -40,7 +40,8 @@
     "start": "find \"src/pages/classes\" -name \"*.js\" -type f -delete && npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "update":"git submodule update --remote"
   },
   "repository": {
     "type": "git",
