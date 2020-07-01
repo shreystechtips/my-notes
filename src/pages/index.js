@@ -14,9 +14,10 @@ import {
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 
-const useStyles = makeStyles(theme => ({
+const style = {
   card: {
     maxWidth: 350,
+    minWidth: 300,
     borderRadius: 8,
     backgroundColor: "#F3F3F7",
   },
@@ -25,7 +26,9 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     // textAlign: "center",
   },
-}))
+}
+
+const useStyles = makeStyles(theme => style)
 
 export default function Index({ data }) {
   const classes = useStyles()
@@ -62,24 +65,41 @@ export default function Index({ data }) {
       <>
         <Typography
           variant="h5"
-          style={{ fontWeight: "bold", textAlign: "left" }}
+          style={{ fontWeight: "bold", textAlign: "center" }}
         >
           {outerKey.toUpperCase()}
         </Typography>
         {Object.keys(data).map(key => (
-          <Grid container direction="column" key={key}>
-            <Typography variant="h6">
+          <Grid
+            container
+            direction="column"
+            key={key}
+            style={{
+              overflow: "hidden",
+              margin: "0 0 15 0",
+              padding: 0,
+            }}
+          >
+            <Typography
+              variant="h6"
+              style={{
+                textAlign: "center",
+              }}
+            >
               {key.charAt(0).toUpperCase() + key.substring(1)}
             </Typography>
             <Grid
               container
               direction="row"
               spacing={4}
-              className={classes.scrollGrid}
               wrap="nowrap"
-              style={{ overflow: "scroll" }}
+              style={{
+                overflowX: "auto",
+                maxWidth: data[key].length * style.card.maxWidth - 15,
+                margin: "auto",
+              }}
             >
-              {postList[outerKey][key].map(post => (
+              {data[key].map(post => (
                 <Grid item className="blog-post-preview" key={post.id}>
                   <Grid container direction="column">
                     <Card className={classes.card}>

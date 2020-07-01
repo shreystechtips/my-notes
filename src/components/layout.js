@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
+    <div style={{ overflow: "auto" }}>
       <Header siteTitle={`Shrey's ${data.site.siteMetadata.title}`} />
       <div
         style={{
@@ -41,7 +41,7 @@ const Layout = ({ children }) => {
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer> */}
       </div>
-    </>
+    </div>
   )
 }
 
