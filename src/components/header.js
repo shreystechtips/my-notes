@@ -92,7 +92,7 @@ const NotesList = () => {
   }
   const [expand, setExpand] = React.useState({})
   return (
-    <div style={{ width: 250 }}>
+    <div style={{ width: 250, height: "100vh", backgroundColor: "#F3F3F7" }}>
       <List>
         {Object.keys(assortedPosts).map(key => (
           <>
