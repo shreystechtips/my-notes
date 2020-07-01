@@ -3,7 +3,6 @@ import Helmet from "react-helmet"
 import Layout from "../components/layout"
 export default function Template({ data }) {
   const post = data.markdownRemark
-  console.log(data)
   return (
     <Layout>
       <div>

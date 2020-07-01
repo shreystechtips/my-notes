@@ -9,6 +9,7 @@ import {
   makeStyles,
   Card,
   CardContent,
+  Paper,
 } from "@material-ui/core"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
@@ -27,7 +28,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Index({ data }) {
-  console.log(data)
   const classes = useStyles()
   const [assortedPosts, setPosts] = React.useState({})
   const { edges: posts } = data.allMarkdownRemark
@@ -53,21 +53,22 @@ export default function Index({ data }) {
         data[cut[0]][cut[1]].push(post)
       }
     })
-    console.log(data)
     setPosts(data)
   }, [])
 
   const generatePostsBox = (outerKey, postList) => {
     const data = postList[outerKey]
-    console.log(Object.keys(data))
     return (
       <>
-        <Typography variant="h4" style={{ fontWeight: "bold" }}>
+        <Typography
+          variant="h5"
+          style={{ fontWeight: "bold", textAlign: "left" }}
+        >
           {outerKey.toUpperCase()}
         </Typography>
         {Object.keys(data).map(key => (
           <Grid container direction="column" key={key}>
-            <Typography variant="h6" style={{ textAlign: "center" }}>
+            <Typography variant="h6">
               {key.charAt(0).toUpperCase() + key.substring(1)}
             </Typography>
             <Grid

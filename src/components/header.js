@@ -8,6 +8,8 @@ import {
   Typography,
   Button,
   makeStyles,
+  useScrollTrigger,
+  Slide,
 } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
 
@@ -20,38 +22,52 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function Header({ siteTitle }) {
+function SlideHeader(props) {
+  const { window, children } = props
+  const trigger = useScrollTrigger()
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  )
+}
+
+function Header(props) {
   const classes = useStyles()
   return (
-    <AppBar
-      style={{
-        background: `#FDB515`,
-        marginBottom: `1.45rem`,
-      }}
-      position="static"
-    >
-      <Toolbar>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="menu"
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" className={classes.title}>
-          <Link
-            to="/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
+    <SlideHeader {...props}>
+      <AppBar
+        style={{
+          background: `#FDB515`,
+          marginBottom: `1.45rem`,
+          // position: "absolute",
+          marginTop: -2,
+        }}
+        position="fixed"
+      >
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
           >
-            {siteTitle}
-          </Link>
-        </Typography>
-      </Toolbar>
-    </AppBar>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            <Link
+              to="/"
+              style={{
+                color: `white`,
+                textDecoration: `none`,
+              }}
+            >
+              {props.siteTitle}
+            </Link>
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </SlideHeader>
   )
 }
 
