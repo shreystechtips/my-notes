@@ -1,35 +1,59 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Button,
+  makeStyles,
+} from "@material-ui/core"
+import MenuIcon from "@material-ui/icons/Menu"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `#FDB515`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
+const useStyles = makeStyles(theme => ({
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}))
+
+function Header({ siteTitle }) {
+  const classes = useStyles()
+  return (
+    <AppBar
       style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
+        background: `#FDB515`,
+        marginBottom: `1.45rem`,
       }}
+      position="static"
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
+      <Toolbar>
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="menu"
         >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-)
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" className={classes.title}>
+          <Link
+            to="/"
+            style={{
+              color: `white`,
+              textDecoration: `none`,
+            }}
+          >
+            {siteTitle}
+          </Link>
+        </Typography>
+      </Toolbar>
+    </AppBar>
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
