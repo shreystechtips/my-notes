@@ -164,38 +164,36 @@ function Header(props) {
 
   return (
     <SlideHeader {...props}>
-      <div>
-        <AppBar
-          style={{
-            background: `#FDB515`,
-            marginBottom: `1.45rem`,
-            marginTop: -2,
-          }}
-          position="fixed"
-        >
-          <Toolbar>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
-              onClick={toggleDrawer(true)}
+      <AppBar
+        style={{
+          background: `#FDB515`,
+          marginBottom: `1.45rem`,
+          marginTop: -2,
+        }}
+        // position="fixed"
+      >
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+            onClick={toggleDrawer(true)}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            <Link
+              to="/"
+              style={{
+                color: `white`,
+                textDecoration: `none`,
+              }}
             >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" className={classes.title}>
-              <Link
-                to="/"
-                style={{
-                  color: `white`,
-                  textDecoration: `none`,
-                }}
-              >
-                {props.siteTitle}
-              </Link>
-            </Typography>
-          </Toolbar>
-        </AppBar>
+              {props.siteTitle}
+            </Link>
+          </Typography>
+        </Toolbar>
         <SwipeableDrawer
           anchor="left"
           open={open}
@@ -204,7 +202,7 @@ function Header(props) {
         >
           <NotesList />
         </SwipeableDrawer>
-      </div>
+      </AppBar>
     </SlideHeader>
   )
 }

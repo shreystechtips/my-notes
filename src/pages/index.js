@@ -18,6 +18,7 @@ const style = {
   card: {
     maxWidth: 350,
     minWidth: 300,
+    maxHeight: 375,
     borderRadius: 8,
     backgroundColor: "#F3F3F7",
   },
@@ -75,16 +76,18 @@ export default function Index({ data }) {
             direction="column"
             key={key}
             style={{
-              overflow: "hidden",
-              margin: "0 0 15 0",
+              // overflow: "hidden",
+              marginBottom: 20,
               padding: 0,
             }}
           >
             <Typography
               variant="h6"
-              style={{
-                textAlign: "center",
-              }}
+              style={
+                {
+                  // textAlign: "center",
+                }
+              }
             >
               {key.charAt(0).toUpperCase() + key.substring(1)}
             </Typography>
@@ -95,8 +98,8 @@ export default function Index({ data }) {
               wrap="nowrap"
               style={{
                 overflowX: "auto",
-                maxWidth: data[key].length * style.card.maxWidth - 15,
-                margin: "auto",
+                // maxWidth: data[key].length * style.card.maxWidth - 15,
+                // margin: "auto",
               }}
             >
               {data[key].map(post => (
