@@ -17,6 +17,7 @@ import {
   Divider,
   ListItemText,
   Collapse,
+  Switch,
 } from "@material-ui/core"
 import { ExpandLess, ExpandMore } from "@material-ui/icons"
 import MenuIcon from "@material-ui/icons/Menu"
@@ -92,7 +93,7 @@ const NotesList = () => {
   }
   const [expand, setExpand] = React.useState({})
   return (
-    <div style={{ width: 250, height: "100vh", backgroundColor: "#F3F3F7" }}>
+    <div style={{ width: 250, height: "100vh" }}>
       <List>
         {Object.keys(assortedPosts).map(key => (
           <>
@@ -193,6 +194,10 @@ function Header(props) {
               {props.siteTitle}
             </Link>
           </Typography>
+          <Switch
+            checked={props.themeDirection}
+            onChange={() => props.themeChange()}
+          />
         </Toolbar>
         <SwipeableDrawer
           anchor="left"

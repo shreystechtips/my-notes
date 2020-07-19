@@ -20,7 +20,7 @@ const style = {
     minWidth: 300,
     maxHeight: 375,
     borderRadius: 8,
-    backgroundColor: "#F3F3F7",
+    // backgroundColor: "#F3F3F7",
   },
   gridRoot: {
     justifyContent: "center",
@@ -29,7 +29,20 @@ const style = {
   },
 }
 
-const useStyles = makeStyles(theme => style)
+const useStyles = makeStyles(theme => ({
+  card: {
+    maxWidth: 350,
+    minWidth: 300,
+    maxHeight: 375,
+    borderRadius: 8,
+    // backgroundColor: "#F3F3F7",
+  },
+  gridRoot: {
+    justifyContent: "center",
+    alignItems: "center",
+    // textAlign: "center",
+  },
+}))
 
 export default function Index({ data }) {
   const classes = useStyles()
@@ -66,6 +79,7 @@ export default function Index({ data }) {
       <>
         <Typography
           variant="h5"
+          color="textPrimary"
           style={{ fontWeight: "bold", textAlign: "center" }}
         >
           {outerKey.toUpperCase()}
@@ -81,14 +95,7 @@ export default function Index({ data }) {
               padding: 0,
             }}
           >
-            <Typography
-              variant="h6"
-              style={
-                {
-                  // textAlign: "center",
-                }
-              }
-            >
+            <Typography variant="h6" color="textPrimary">
               {key.charAt(0).toUpperCase() + key.substring(1)}
             </Typography>
             <Grid
@@ -105,33 +112,27 @@ export default function Index({ data }) {
               {data[key].map(post => (
                 <Grid item className="blog-post-preview" key={post.id}>
                   <Grid container direction="column">
-                    <Card className={classes.card}>
+                    <Card
+                      className={classes.card}
+                      component={Link}
+                      to={post.frontmatter.path}
+                      style={{
+                        textDecoration: "none",
+                      }}
+                    >
                       <CardContent>
                         <Grid item>
                           <Typography variant="h4">
-                            <MaterialLink
-                              to={post.frontmatter.path}
-                              component={Link}
-                            >
-                              {post.frontmatter.title}
-                            </MaterialLink>
+                            {post.frontmatter.title}
                           </Typography>
                           <Typography variant="h6">
                             {post.frontmatter.date}
                           </Typography>
                         </Grid>
                         <Grid item>
-                          <Paper
-                            style={{
-                              backgroundColor: "yellow",
-                              width: "auto",
-                              padding: 2,
-                            }}
-                          >
-                            <Typography noWrap variant="body2">
-                              Section {post.frontmatter.path}
-                            </Typography>
-                          </Paper>
+                          <Typography noWrap variant="body2">
+                            Section {post.frontmatter.path}
+                          </Typography>
                         </Grid>
                         <Grid item>
                           <Typography variant="body1">

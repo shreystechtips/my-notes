@@ -176,6 +176,11 @@ textarea {
 [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
+::-webkit-scrollbar {
+  /* width: 5px; */
+  /* background: grey; */
+  /* scrollbar-color: red; */
+}
 ::-webkit-input-placeholder {
   color: inherit;
   opacity: 0.54;
@@ -199,7 +204,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  color: hsla(0, 0%, 0%, 0.8);
+  /* color: hsla(0, 0%, 0%, 0.8); */
   font-family: georgia, serif;
   font-weight: normal;
   word-wrap: break-word;
