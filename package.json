@@ -7,10 +7,12 @@
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
-    "gatsby": "^2.23.10",
+    "dotenv": "^8.2.0",
+    "gatsby": "^2.24.12",
     "gatsby-image": "^2.4.8",
     "gatsby-plugin-catch-links": "^2.3.7",
     "gatsby-plugin-exclude": "^1.0.2",
+    "gatsby-plugin-google-analytics": "^2.3.13",
     "gatsby-plugin-manifest": "^2.4.13",
     "gatsby-plugin-material-ui": "^2.1.9",
     "gatsby-plugin-offline": "^3.2.12",

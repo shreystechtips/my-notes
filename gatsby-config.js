@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Class Notes Archive`,
@@ -24,6 +28,13 @@ module.exports = {
       options: {
         path: `${__dirname}/src/pages/classes`,
         name: "classes",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // The property ID; the tracking code won't be generated without it
+        trackingId: process.env.GA_TRACKING_ID,
       },
     },
     `gatsby-transformer-sharp`,
