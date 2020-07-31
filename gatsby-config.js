@@ -11,6 +11,7 @@ module.exports = {
   plugins: [
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-netlify-cache`,
     `gatsby-plugin-catch-links`,
     {
       resolve: "gatsby-plugin-exclude",
