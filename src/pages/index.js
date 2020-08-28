@@ -157,7 +157,7 @@ export default function Index({ data }) {
         <div style={{ margin: 10 }}>
           <Grid
             container
-            direction="row"
+            direction="column"
             spacing={2}
             className={classes.gridRoot}
           >
