@@ -1,0 +1,7 @@
+version: 1
+updates:
+    -   package-ecosystem: "gitsubmodule"
+        directory: "/src/pages/classes/"
+        schedule:
+            interval: "daily"
+      
