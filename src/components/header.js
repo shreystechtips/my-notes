@@ -92,8 +92,15 @@ const NotesList = () => {
   }
   const [expand, setExpand] = React.useState({})
   return (
-    <div style={{ width: 250, height: "100vh", backgroundColor: "#F3F3F7" }}>
-      <List>
+    <div
+      style={{
+        width: 250,
+        minHeight: "100vh",
+        height: "100%",
+        backgroundColor: "#F3F3F7",
+      }}
+    >
+      <List style={{ backgroundColor: "#F3F3F7" }}>
         {Object.keys(assortedPosts).map(key => (
           <>
             <ListItem button key={key} onClick={e => handleClick(key)}>
@@ -226,7 +233,7 @@ export const pageQuery = graphql`
           html
           id
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
+            date
             path
             title
           }

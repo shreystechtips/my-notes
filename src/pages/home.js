@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
+import moment from "moment"
 import {
   Typography,
   Grid,
@@ -31,33 +32,38 @@ const style = {
 
 const useStyles = makeStyles(theme => style)
 
-export default function Index({ data }) {
+export default function Index(props) {
   const classes = useStyles()
   const [assortedPosts, setPosts] = React.useState({})
+  console.log(props)
+  const { pageContext } = props
+  const { data } = pageContext
   const { edges: posts } = data.allMarkdownRemark
   React.useEffect(() => {
-    var data = {}
-    const temp = posts.filter(
-      post =>
-        post.node.frontmatter.path != null &&
-        post.node.frontmatter.date != null &&
-        post.node.frontmatter.title != null &&
-        post.node.frontmatter.path.length > 0
-    )
-    temp.map(({ node: post }) => {
+    var vals = {}
+    // const temp = posts.filter(
+    //   post =>
+    //     post.node.frontmatter.path != null &&
+    //     post.node.frontmatter.date != null &&
+    //     post.node.frontmatter.title != null &&
+    //     post.node.frontmatter.path.length > 0
+    // )
+    console.log(posts, props)
+    posts.map(post => {
+      console.log(post)
       var cut = post.frontmatter.path.split("/")
       cut = cut.slice(1)
       if (cut.length >= 2) {
-        if (!data.hasOwnProperty(cut[0])) {
-          data[cut[0]] = {}
+        if (!vals.hasOwnProperty(cut[0])) {
+          vals[cut[0]] = {}
         }
-        if (!data[cut[0]].hasOwnProperty(cut[1])) {
-          data[cut[0]][cut[1]] = []
+        if (!vals[cut[0]].hasOwnProperty(cut[1])) {
+          vals[cut[0]][cut[1]] = []
         }
-        data[cut[0]][cut[1]].push(post)
+        vals[cut[0]][cut[1]].push(post)
       }
     })
-    setPosts(data)
+    setPosts(vals)
   }, [])
 
   const generatePostsBox = (outerKey, postList) => {
@@ -117,7 +123,9 @@ export default function Index({ data }) {
                             </MaterialLink>
                           </Typography>
                           <Typography variant="h6">
-                            {post.frontmatter.date}
+                            {moment(post.frontmatter.date).format(
+                              "MMMM DD, YYYY"
+                            )}
                           </Typography>
                         </Grid>
                         <Grid item>
@@ -171,21 +179,21 @@ export default function Index({ data }) {
   )
 }
 
-export const pageQuery = graphql`
-  query postsQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
-      edges {
-        node {
-          excerpt(pruneLength: 100)
-          html
-          id
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            path
-            title
-          }
-        }
-      }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query postsQuery {
+//     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+//       edges {
+//         node {
+//           excerpt(pruneLength: 100)
+//           html
+//           id
+//           frontmatter {
+//             date(formatString: "MMMM DD, YYYY")
+//             path
+//             title
+//           }
+//         }
+//       }
+//     }
+//   }
+// `

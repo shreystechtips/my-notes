@@ -16,6 +16,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators
 
   const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
+  const indexTemplate = path.resolve(`src/pages/home.js`)
 
   return graphql(`
     {
@@ -26,7 +27,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         edges {
           node {
             fileAbsolutePath
-            excerpt(pruneLength: 250)
+            excerpt(pruneLength: 100)
             html
             id
             frontmatter {
@@ -42,7 +43,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     if (result.errors) {
       return Promise.reject(result.errors)
     }
-
+    var ret = { data: { allMarkdownRemark: { edges: [] } } }
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       if (
         node.frontmatter.path != null &&
@@ -62,7 +63,15 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             truePath: node.frontmatter.path,
           }, // additional data can be passed via context
         })
+        ret.data.allMarkdownRemark.edges.push(node)
       }
+    })
+    createPage({
+      path: "/",
+      component: indexTemplate,
+      context: {
+        data: ret.data,
+      },
     })
   })
 }
