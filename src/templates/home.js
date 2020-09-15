@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => style)
 export default function Index(props) {
   const classes = useStyles()
   const [assortedPosts, setPosts] = React.useState({})
-  console.log(props)
   const { pageContext } = props
   const { data } = pageContext
   const { edges: posts } = data.allMarkdownRemark
@@ -48,9 +47,7 @@ export default function Index(props) {
     //     post.node.frontmatter.title != null &&
     //     post.node.frontmatter.path.length > 0
     // )
-    console.log(posts, props)
     posts.map(post => {
-      console.log(post)
       var cut = post.frontmatter.path.split("/")
       cut = cut.slice(1)
       if (cut.length >= 2) {

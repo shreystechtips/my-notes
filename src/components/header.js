@@ -83,7 +83,6 @@ const NotesList = () => {
     setExpand(expand)
   }, [])
   const handleClick = input => {
-    console.log(input, expand[input])
     if (!expand.hasOwnProperty(input)) {
       setExpand({ ...expand, [input]: true })
     } else {
