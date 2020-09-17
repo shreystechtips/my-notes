@@ -42,7 +42,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "npm run update && find \"src/pages/classes\" -name \"*.js\" -type f -delete && GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build",
+    "build": "find \"src/pages/classes\" -name \"*.js\" -type f -delete && GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build",
     "develop": "find \"src/pages/classes\" -name \"*.js\" -type f -delete && gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "find \"src/pages/classes\" -name \"*.js\" -type f -delete && npm run develop",
