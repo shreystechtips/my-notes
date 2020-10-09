@@ -1,20 +1,19 @@
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
+import "./scroll.css";
 import { useStaticQuery, graphql } from "gatsby";
 import {
 	AppBar,
 	Toolbar,
 	IconButton,
 	Typography,
-	Button,
 	makeStyles,
 	useScrollTrigger,
 	Slide,
 	List,
 	ListItem,
 	SwipeableDrawer,
-	Divider,
 	ListItemText,
 	Collapse,
 	Switch,
@@ -35,10 +34,14 @@ const useStyles = makeStyles((theme) => ({
 	nested2: {
 		paddingLeft: theme.spacing(6),
 	},
+	bg: {
+		backgroundColor: theme.palette.background.paper,
+		overflowX: "hidden",
+	},
 }));
 
 function SlideHeader(props) {
-	const { window, children } = props;
+	const { children } = props;
 	const trigger = useScrollTrigger();
 	return (
 		<Slide appear={false} direction="down" in={!trigger}>
@@ -97,10 +100,11 @@ const NotesList = () => {
 				width: 250,
 				minHeight: "100vh",
 				height: "100%",
-				backgroundColor: "#F3F3F7",
+				// backgroundColor: "#F3F3F7",0
 			}}
+			className={classes.bg}
 		>
-			<List style={{ backgroundColor: "#F3F3F7" }}>
+			<List className={classes.bg}>
 				{Object.keys(assortedPosts).map((key) => (
 					<>
 						<ListItem button key={key} onClick={(e) => handleClick(key)}>

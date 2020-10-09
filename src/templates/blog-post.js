@@ -1,19 +1,11 @@
 import React from "react";
 import Helmet from "react-helmet";
 import Layout from "../components/layout";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { makeStyles, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 require(`katex/dist/katex.min.css`);
-
-const useStyles = makeStyles((theme) => ({
-	text: {
-		color: theme.palette.text.primary,
-	},
-}));
 
 export default function Template({ data }) {
 	const post = data.markdownRemark;
-	const classes = useStyles();
 	return (
 		<Layout>
 			<div>
