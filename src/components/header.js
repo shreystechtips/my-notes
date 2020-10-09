@@ -84,7 +84,6 @@ const NotesList = () => {
 		setExpand(expand);
 	}, []);
 	const handleClick = (input) => {
-		console.log(input, expand[input]);
 		if (!expand.hasOwnProperty(input)) {
 			setExpand({ ...expand, [input]: true });
 		} else {
@@ -93,8 +92,15 @@ const NotesList = () => {
 	};
 	const [expand, setExpand] = React.useState({});
 	return (
-		<div style={{ width: 250, height: "100vh" }}>
-			<List>
+		<div
+			style={{
+				width: 250,
+				minHeight: "100vh",
+				height: "100%",
+				backgroundColor: "#F3F3F7",
+			}}
+		>
+			<List style={{ backgroundColor: "#F3F3F7" }}>
 				{Object.keys(assortedPosts).map((key) => (
 					<>
 						<ListItem button key={key} onClick={(e) => handleClick(key)}>
@@ -224,14 +230,14 @@ export default Header;
 
 export const pageQuery = graphql`
 	query drawerQuery {
-		allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+		allMarkdownRemark(
+			filter: { frontmatter: { path: { ne: null }, title: { ne: null } } }
+			sort: { order: DESC, fields: [frontmatter___date] }
+		) {
 			edges {
 				node {
-					excerpt(pruneLength: 100)
-					html
-					id
 					frontmatter {
-						date(formatString: "MMMM DD, YYYY")
+						date
 						path
 						title
 					}

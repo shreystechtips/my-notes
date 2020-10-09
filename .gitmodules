@@ -1,3 +1,9 @@
 [submodule "src/pages/classes/cs61a"]
 	path = src/pages/classes/cs61a
 	url = git@github.com:shreystechtips/cs61a
+[submodule "src/pages/classes/phys7b"]
+	path = src/pages/classes/phys7b
+	url = git@github.com:shreystechtips/phys7b
+[submodule "src/pages/classes/eecs16a"]
+	path = src/pages/classes/eecs16a
+	url = git@github.com:shreystechtips/eecs16a.git
