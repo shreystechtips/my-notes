@@ -1,7 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
 import Layout from "../components/layout";
-import { makeStyles } from "@material-ui/core";
+import { graphql } from "gatsby";
 require(`katex/dist/katex.min.css`);
 
 export default function Template({ data }) {
