@@ -50,7 +50,8 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 			if (
 				node.frontmatter.path != null &&
 				node.frontmatter.date != null &&
-				node.frontmatter.title != null
+				node.frontmatter.title != null &&
+				node.frontmatter.path.indexOf("..") < 0
 			) {
 				// var { dir, base } = path.parse(
 				//   path.relative(path.join(__dirname, "classes"), node.fileAbsolutePath)

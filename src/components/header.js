@@ -60,6 +60,7 @@ const NotesList = () => {
 				post.node.frontmatter.path != null &&
 				post.node.frontmatter.date != null &&
 				post.node.frontmatter.title != null &&
+				post.node.frontmatter.path.indexOf("..") < 0 &&
 				post.node.frontmatter.path.length > 0
 		);
 		temp.map(({ node: post }) => {
