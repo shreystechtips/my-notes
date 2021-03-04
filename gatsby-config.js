@@ -8,6 +8,7 @@ module.exports = {
     description: `Shrey's Class Notes from UC Berkeley, written in Markdown and open-sourced`,
     author: `@shreystechtips`,
   },
+  flags: { PRESERVE_WEBPACK_CACHE: true },
   plugins: [
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-react-helmet`,
