@@ -72,12 +72,12 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 				});
 			}
 		});
-		createPage({
-			path: "/",
-			component: indexTemplate,
-			context: {
-				data: ret.data,
-			},
-		});
+		// createPage({
+		// 	path: "/",
+		// 	component: indexTemplate,
+		// 	context: {
+		// 		data: ret.data,
+		// 	},
+		// });
 	});
 };
