@@ -1,15 +1,28 @@
 [submodule "src/pages/classes/cs61a"]
 	path = src/pages/classes/cs61a
 	url = git@github.com:shreystechtips/cs61a
+	shallow = true 
 [submodule "src/pages/classes/phys7b"]
 	path = src/pages/classes/phys7b
 	url = git@github.com:shreystechtips/phys7b
+	shallow = true
 [submodule "src/pages/classes/eecs16a"]
 	path = src/pages/classes/eecs16a
 	url = git@github.com:shreystechtips/eecs16a.git
+	shallow = true
 [submodule "src/pages/classes/cs70"]
 	path = src/pages/classes/cs70
 	url = git@github.com:shreystechtips/cs70.git
+	shallow = true
 [submodule "src/pages/classes/eecs16b"]
 	path = src/pages/classes/eecs16b
 	url = git@github.com:shreystechtips/eecs16b.git
+	shallow = true
+[submodule "src/pages/classes/cs61c"]
+	path = src/pages/classes/cs61c
+	url = git@github.com:shreystechtips/cs61c.git
+	shallow = true
+[submodule "src/pages/classes/ee106a"]
+	path = src/pages/classes/ee106a
+	url = git@github.com:shreystechtips/c106a.git
+	shallow = true
