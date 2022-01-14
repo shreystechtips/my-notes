@@ -28,39 +28,9 @@ export default function Index(props) {
 	const classes = useStyles();
 	const [assortedPosts, setPosts] = React.useState({});
 	const { pageContext } = props;
-	const { data } = pageContext;
-	const { edges: posts } = data.allMarkdownRemark;
+	const data = pageContext.data;
 	React.useEffect(() => {
-		var vals = {};
-
-		// filter posts by the correct params
-		const temp = posts.filter(
-			(post) =>
-				post.node.frontmatter.path != null &&
-				post.node.frontmatter.date != null &&
-				post.node.frontmatter.title != null &&
-				post.node.frontmatter.path.indexOf("..") < 0 &&
-				post.node.frontmatter.path.length > 0
-		);
-		temp.map(({ node: post }) => {
-			// Parse the URL by class
-			var cut = post.frontmatter.path.split("/");
-			cut = cut.slice(1);
-			// If a class and subsection is defined (lecture, disc, etc)
-			if (cut.length >= 2) {
-				// Add class to cut if not exists
-				if (!vals.hasOwnProperty(cut[0])) {
-					vals[cut[0]] = {};
-				}
-				// Add subsection if not exists
-				if (!vals[cut[0]].hasOwnProperty(cut[1])) {
-					vals[cut[0]][cut[1]] = [];
-				}
-				// Add the post to the data
-				vals[cut[0]][cut[1]].push(post);
-			}
-		});
-		setPosts(vals);
+		setPosts(data);
 	}, []);
 
 	const generatePostsBox = (outerKey, postList) => {
