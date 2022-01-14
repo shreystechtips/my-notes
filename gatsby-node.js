@@ -14,7 +14,6 @@ exports.onCreateNode = ({ node }) => {
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
 	const { createPage } = boundActionCreators;
-
 	const blogPostTemplate = path.resolve(`src/templates/blog-post.js`);
 	const indexTemplate = path.resolve(`src/templates/home.js`);
 	// const req = "/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\+\\d{2}:\\d{2}/g";
@@ -67,17 +66,19 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 					}, // additional data can be passed via context
 				});
 				ret.data.allMarkdownRemark.edges.push({
-					excerpt: node["excerpt"],
-					frontmatter: node["frontmatter"],
+					node: {
+						excerpt: node["excerpt"],
+						frontmatter: node["frontmatter"],
+					},
 				});
 			}
 		});
-		// createPage({
-		// 	path: "/",
-		// 	component: indexTemplate,
-		// 	context: {
-		// 		data: ret.data,
-		// 	},
-		// });
+		createPage({
+			path: "/",
+			component: indexTemplate,
+			context: {
+				data: ret.data,
+			},
+		});
 	});
 };

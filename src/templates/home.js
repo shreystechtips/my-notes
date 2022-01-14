@@ -4,11 +4,9 @@ import moment from "moment";
 import {
 	Typography,
 	Grid,
-	// Link as MaterialLink,
 	makeStyles,
 	Card,
 	CardContent,
-	// Paper,
 } from "@material-ui/core";
 import SEO from "../components/seo";
 import Layout from "../components/layout";
@@ -19,15 +17,10 @@ const useStyles = makeStyles((theme) => ({
 		maxHeight: 375,
 		borderRadius: 8,
 	},
-	// 	backgroundColor:
-	// 		theme.palette.type === "light"
-	// 			? "#F3F3F7"
-	// 			: "#FF0000",
-	// },
+
 	gridRoot: {
 		justifyContent: "center",
 		alignItems: "center",
-		// textAlign: "center",
 	},
 }));
 
@@ -39,23 +32,31 @@ export default function Index(props) {
 	const { edges: posts } = data.allMarkdownRemark;
 	React.useEffect(() => {
 		var vals = {};
-		// const temp = posts.filter(
-		//   post =>
-		//     post.node.frontmatter.path != null &&
-		//     post.node.frontmatter.date != null &&
-		//     post.node.frontmatter.title != null &&
-		//     post.node.frontmatter.path.length > 0
-		// )
-		posts.map((post) => {
+
+		// filter posts by the correct params
+		const temp = posts.filter(
+			(post) =>
+				post.node.frontmatter.path != null &&
+				post.node.frontmatter.date != null &&
+				post.node.frontmatter.title != null &&
+				post.node.frontmatter.path.indexOf("..") < 0 &&
+				post.node.frontmatter.path.length > 0
+		);
+		temp.map(({ node: post }) => {
+			// Parse the URL by class
 			var cut = post.frontmatter.path.split("/");
 			cut = cut.slice(1);
+			// If a class and subsection is defined (lecture, disc, etc)
 			if (cut.length >= 2) {
+				// Add class to cut if not exists
 				if (!vals.hasOwnProperty(cut[0])) {
 					vals[cut[0]] = {};
 				}
+				// Add subsection if not exists
 				if (!vals[cut[0]].hasOwnProperty(cut[1])) {
 					vals[cut[0]][cut[1]] = [];
 				}
+				// Add the post to the data
 				vals[cut[0]][cut[1]].push(post);
 			}
 		});
@@ -168,22 +169,3 @@ export default function Index(props) {
 		</Layout>
 	);
 }
-
-// export const pageQuery = graphql`
-//   query postsQuery {
-//     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
-//       edges {
-//         node {
-//           excerpt(pruneLength: 100)
-//           html
-//           id
-//           frontmatter {
-//             date(formatString: "MMMM DD, YYYY")
-//             path
-//             title
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
