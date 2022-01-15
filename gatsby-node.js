@@ -14,7 +14,6 @@ exports.onCreateNode = ({ node }) => {
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
 	const { createPage } = boundActionCreators;
-
 	const blogPostTemplate = path.resolve(`src/templates/blog-post.js`);
 	const indexTemplate = path.resolve(`src/templates/home.js`);
 	// const req = "/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\+\\d{2}:\\d{2}/g";
@@ -67,17 +66,50 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 					}, // additional data can be passed via context
 				});
 				ret.data.allMarkdownRemark.edges.push({
-					excerpt: node["excerpt"],
-					frontmatter: node["frontmatter"],
+					node: {
+						excerpt: node["excerpt"],
+						frontmatter: node["frontmatter"],
+					},
 				});
 			}
 		});
-		// createPage({
-		// 	path: "/",
-		// 	component: indexTemplate,
-		// 	context: {
-		// 		data: ret.data,
-		// 	},
-		// });
+
+		// filter posts to offload computation
+		const { edges: posts } = ret.data.allMarkdownRemark;
+		var vals = {};
+		const temp = posts.filter(
+			(post) =>
+				post.node.frontmatter.path != null &&
+				post.node.frontmatter.date != null &&
+				post.node.frontmatter.title != null &&
+				post.node.frontmatter.path.indexOf("..") < 0 &&
+				post.node.frontmatter.path.length > 0
+		);
+		temp.map(({ node: post }) => {
+			// Parse the URL by class
+			var cut = post.frontmatter.path.split("/");
+			cut = cut.slice(1);
+			// If a class and subsection is defined (lecture, disc, etc)
+			if (cut.length >= 2) {
+				// Add class to cut if not exists
+				if (!vals.hasOwnProperty(cut[0])) {
+					vals[cut[0]] = {};
+				}
+				// Add subsection if not exists
+				if (!vals[cut[0]].hasOwnProperty(cut[1])) {
+					vals[cut[0]][cut[1]] = [];
+				}
+				// Add the post to the data
+				vals[cut[0]][cut[1]].push(post);
+			}
+		});
+
+		createPage({
+			path: "/",
+			component: indexTemplate,
+			context: {
+				data: vals,
+			},
+		});
 	});
 };
